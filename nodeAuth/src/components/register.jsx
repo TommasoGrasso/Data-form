@@ -46,6 +46,7 @@ const RegisterForm = () => {
         <input type="text" value={fullname} onChange={(e) => setFullname(e.target.value)} required />
       </label>
       <button type="submit">Register</button>
+      <a href="/login">Login</a>
     </form>
   );
 };

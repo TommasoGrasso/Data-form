@@ -40,6 +40,7 @@ const LoginForm = ({ onLoginSuccess }) => {
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
       </label>
       <button type="submit">Login</button>
+      <a href="/register">Register</a>
     </form>
   );
 };

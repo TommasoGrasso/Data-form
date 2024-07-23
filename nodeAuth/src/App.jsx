@@ -33,7 +33,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/register" element={<RegisterForm />} />
-        <Route path="/" element={<h1>Welcome to the Home Page</h1>} />
+        <Route path="/" element={<h1>Welcome to the Home Page. Click here to <a href="/login">login</a></h1>} />
         <Route path="/login" element={!isLoggedIn ? (
           <LoginForm onLoginSuccess={handleLoginSuccess} />
         ) : (
