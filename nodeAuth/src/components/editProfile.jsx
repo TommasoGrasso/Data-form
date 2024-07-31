@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const EditProfile = () => {
+// eslint-disable-next-line react/prop-types
+const EditProfile = ({ token }) => {
   const { username } = useParams();
   const navigate = useNavigate(); 
   const [userData, setUserData] = useState({
@@ -15,7 +16,11 @@ const EditProfile = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/profile/${username}`);
+        const response = await axios.get(`http://localhost:5000/profile/${username}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         setUserData(response.data);
       } catch (error) {
         console.error('Error fetching user profile:', error);
@@ -23,7 +28,7 @@ const EditProfile = () => {
     };
 
     fetchUserProfile();
-  }, [username]);
+  }, [username, token]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,9 +47,14 @@ const EditProfile = () => {
         password: userData.password,
         email: userData.email,
         fullname: userData.fullname,
+      }, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
 
       alert('User updated successfully');
+      navigate('/dashboard');
     } catch (error) {
       console.error('Error updating user:', error);
       alert('Failed to update user');

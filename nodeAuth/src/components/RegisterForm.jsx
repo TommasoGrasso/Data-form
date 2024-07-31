@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 const RegisterForm = () => {
   const [username, setUsername] = useState('');
@@ -9,14 +10,13 @@ const RegisterForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password, email, fullname }),
+      const response = await axios.post('http://localhost:5000/register', {
+        username,
+        password,
+        email,
+        fullname,
       });
-      if (response.ok) {
+      if (response.status === 201) {
         console.log('User registered successfully');
       } else {
         console.error('Failed to register user');
@@ -46,7 +46,6 @@ const RegisterForm = () => {
         <input type="text" value={fullname} onChange={(e) => setFullname(e.target.value)} required />
       </label>
       <button type="submit">Register</button>
-      <a href="/login">Login</a>
     </form>
   );
 };

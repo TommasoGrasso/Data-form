@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState } from 'react';
+import axios from 'axios';
 
 // eslint-disable-next-line react/prop-types
 const LoginForm = ({ onLoginSuccess }) => {
@@ -8,23 +9,21 @@ const LoginForm = ({ onLoginSuccess }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
+      const response = await axios.post('http://localhost:5000/login', {
+        username,
+        password
       });
-      if (response.ok) {
-        console.log('Login successful');
 
-        onLoginSuccess(username);  
+      if (response.status === 200) {
+        console.log('Login successful');
+        onLoginSuccess(response.data.token, username);
       } else {
         console.error('Invalid credentials');
-        alert("Credenziali non valide")
+        alert("Credenziali non valide");
       }
     } catch (error) {
       console.error('Error logging in:', error);
+      alert("Errore durante il login");
     }
   };
 
@@ -40,7 +39,6 @@ const LoginForm = ({ onLoginSuccess }) => {
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
       </label>
       <button type="submit">Login</button>
-      <a href="/register">Register</a>
     </form>
   );
 };
