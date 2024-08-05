@@ -4,6 +4,7 @@ import LoginForm from './components/LoginForm';
 import EditProfile from './components/editProfile';
 import { useState, useEffect } from 'react';
 import Dashboard from './components/dashboard';
+import './App.css'
 
 const App = () => {
   const [token, setToken] = useState(sessionStorage.getItem('token') || '');

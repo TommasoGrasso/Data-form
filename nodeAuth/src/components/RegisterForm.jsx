@@ -27,26 +27,30 @@ const RegisterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className='input-group'>
+      <form className='cont' onSubmit={handleSubmit}>
       <h2>Register</h2>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
-      </label>
-      <label>
-        Password:
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      </label>
-      <label>
-        Email:
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      </label>
-      <label>
-        Fullname:
-        <input type="text" value={fullname} onChange={(e) => setFullname(e.target.value)} required />
-      </label>
+      <div className='cont-in1'>
+        <input className='inputForm' type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+        <label className='label'>Username</label>
+      </div>
+      <div className='cont-in1'>
+        <input className='inputForm' type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <label className='label'>Password</label>
+      </div>
+      <div className='cont-in1'>
+        
+        <input className='inputForm' type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <label className='label'>Email</label>
+      </div>
+      <div className='cont-in1'>        
+        <input className='inputForm' type="text" value={fullname} onChange={(e) => setFullname(e.target.value)} required />
+        <label className='label'>Fullname</label>
+      </div>
       <button type="submit">Register</button>
     </form>
+    </div>
+
   );
 };
 
