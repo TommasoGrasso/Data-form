@@ -27,6 +27,20 @@ const RegisterForm = () => {
   };
 
   return (
+    <div className="area" >
+            <ul className="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+    
     <div className='input-group'>
       <form className='cont' onSubmit={handleSubmit}>
       <h2>Register</h2>
@@ -47,10 +61,11 @@ const RegisterForm = () => {
         <input className='inputForm' type="text" value={fullname} onChange={(e) => setFullname(e.target.value)} required />
         <label className='label'>Fullname</label>
       </div>
-      <button type="submit">Register</button>
+
+      <button type="submit">SIGN UP</button>
     </form>
     </div>
-
+    </div >
   );
 };
 
